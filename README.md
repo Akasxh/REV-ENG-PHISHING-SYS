@@ -39,13 +39,111 @@ Dropping Non-Numerical Features: During the preprocessing phase, we identified t
 Processed Data: The cleaned and processed data from url.csv, now consisting of 17 carefully selected features, was then used to train and benchmark the classification models.
 
 #### 2. Model Training and Evaluation
-Model X (Random Forest) and Decision Tree Models: We initially trained and evaluated Decision Tree models alongside Model X. While both models provided decent performance, Model X showed promising results with a balanced approach to precision and recall.
-XGBoost and Neural Networks: Given that Neural Networks, XGBoost, and Decision Trees are all popular choices for classification tasks, we trained them on the same processed dataset and carefully recorded their performance metrics.
+We trained three popular classification models—Decision Trees, XGBoost, and Neural Networks—on the same processed dataset, alongside our pre-trained Model X (Random Forest). Each model was assessed based on accuracy, precision, and recall to ensure a consistent and comparative analysis.
+
+For Decision Trees, we used Gini Impurity and Information Gain to determine the best splits:
+
+- **Gini Impurity:**
+
+  \[
+  G = 1 - \sum_{i=1}^{n} p_i^2
+  \]
+
+  where \( p_i \) is the probability of class \( i \) at a given node.
+
+- **Information Gain:**
+
+  \[
+  IG = H(S) - \sum_{i=1}^{k} \frac{|S_i|}{|S|} H(S_i)
+  \]
+
+  where \( H(S) \) is the entropy of the original dataset \( S \), and \( H(S_i) \) is the entropy of each subset \( S_i \) created by a split.
+
+For Model X (Random Forest), which is an ensemble of Decision Trees, we evaluated the predictions as follows:
+
+- **Prediction of Random Forest:**
+
+  \[
+  \hat{y} = \frac{1}{N} \sum_{i=1}^{N} T_i(x)
+  \]
+
+  where \( T_i(x) \) is the prediction of the \( i \)-th tree for input \( x \), and \( N \) is the total number of trees in the forest.
+
+- **Bootstrap Sampling:**
+
+  \[
+  S^{\text{boot}} = \{ (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \}
+  \]
+
+  where \( m \) is the number of samples, and \( S^{\text{boot}} \) is the bootstrap sample.
+
+### 3. XGBoost (Extreme Gradient Boosting)
+
+XGBoost builds trees sequentially, where each tree tries to correct the errors of the previous ones by minimizing a regularized loss function.
+
+- **Objective Function:**
+
+  \[
+  \mathcal{L}(\phi) = \sum_{i=1}^{n} l(\hat{y}_i, y_i) + \sum_{k=1}^{K} \Omega(f_k)
+  \]
+
+  where \( l(\hat{y}_i, y_i) \) is the loss function, and \( \Omega(f_k) \) is the regularization term.
+
+- **Regularization Term:**
+
+  \[
+  \Omega(f_k) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2
+  \]
+
+  where \( T \) is the number of leaves in the tree, \( w_j \) are the leaf weights, \( \gamma \) controls the number of leaves, and \( \lambda \) controls the \( L2 \) regularization.
+
+- **Prediction:**
+
+  \[
+  \hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + f_t(x_i)
+  \]
+
+  where \( \hat{y}_i^{(t)} \) is the prediction at iteration \( t \), and \( f_t(x_i) \) is the prediction of the \( t \)-th tree.
+
+### 4. Multilayer Perceptron (Neural Network)
+
+A Multilayer Perceptron (MLP) is a type of neural network that consists of multiple layers of neurons, including an input layer, one or more hidden layers, and an output layer.
+
+- **Activation Function:**
+
+  \[
+  a^{(l)} = f(W^{(l)} \cdot a^{(l-1)} + b^{(l)})
+  \]
+
+  where \( a^{(l)} \) is the activation of layer \( l \), \( W^{(l)} \) is the weight matrix, \( b^{(l)} \) is the bias vector, and \( f \) is the activation function (e.g., ReLU, Sigmoid).
+
+- **Forward Propagation:**
+
+  \[
+  \hat{y} = f(W^{(L)} \cdot a^{(L-1)} + b^{(L)})
+  \]
+
+  where \( \hat{y} \) is the predicted output, and \( L \) is the number of layers.
+
+- **Cost Function:**
+
+  \[
+  J(\theta) = \frac{1}{m} \sum_{i=1}^{m} \text{Loss}(\hat{y}^{(i)}, y^{(i)})
+  \]
+
+  where \( J(\theta) \) is the cost function, \( m \) is the number of training examples, \( \hat{y}^{(i)} \) is the predicted output, and \( y^{(i)} \) is the actual output.
+
+- **Backpropagation:**
+
+  \[
+  \frac{\partial J}{\partial W^{(l)}} = \delta^{(l)} \cdot a^{(l-1)}
+  \]
+
+  where \( \delta^{(l)} \) is the error term for layer \( l \), and \( a^{(l-1)} \) is the activation of the previous layer.
+
 
 #### 3. Performance Comparison and Insights
-XGBoost: The XGBoost model demonstrated significant improvements in both accuracy and robustness compared to Model X and Decision Tree models. Its ability to handle overfitting through regularization and its efficiency in dealing with the dataset's complexities made it a standout performer.
-Neural Networks: The Neural Network model also performed exceptionally well, particularly in its capacity to learn intricate patterns within the URL features. The model's flexibility in architecture and its capacity to model non-linear relationships contributed to its superior performance.
-Comparative Analysis: Through rigorous evaluation, it became clear that both XGBoost and Neural Networks outperformed Model X and Decision Tree models in detecting phishing URLs. The higher accuracy, precision, and recall rates achieved by XGBoost and Neural Networks indicated their suitability for this application.
+XGBoost and Neural Networks significantly outperformed Model X and Decision Trees, with XGBoost excelling in accuracy and robustness due to its regularization and efficiency. Neural Networks demonstrated superior performance by effectively learning complex patterns and modeling non-linear relationships. This comparative analysis highlighted XGBoost and Neural Networks as the most suitable models for detecting phishing URLs.
 
 #### 4. Conclusion
 ![](image/Benchmark.png)
