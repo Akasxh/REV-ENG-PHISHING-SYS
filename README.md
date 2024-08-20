@@ -41,50 +41,50 @@ Processed Data: The cleaned and processed data from url.csv, now consisting of 1
 #### 2. Model Training and Evaluation
 We trained three popular classification models—Decision Trees, XGBoost, and Neural Networks—on the same processed dataset, alongside our pre-trained Model X (Random Forest). Each model was assessed based on accuracy, precision, and recall to ensure a consistent and comparative analysis.
 
-# Decision Trees
+#### Decision Trees
 
-### Gini Impurity:
+##### Gini Impurity:
 $$ G = 1 - \sum_{i=1}^{n} p_i^2 $$
 
 where \( p_i \) is the probability of class \( i \) at a given node.
 
-### Information Gain:
+##### Information Gain:
 $$ IG = H(S) - \sum_{i=1}^{k} \frac{|S_i|}{|S|} H(S_i) $$
 
 where \( H(S) \) is the entropy of the original dataset, and \( H(S_i) \) is the entropy of each subset created by a split.
 
-# Random Forest
+#### Random Forest
 
-### Prediction:
+##### Prediction:
 $$ \hat{y} = \frac{1}{N} \sum_{i=1}^{N} T_i(x) $$
 
 where \( T_i(x) \) is the prediction of the \( i \)-th tree for input \( x \), and \( N \) is the total number of trees in the forest.
 
-# XGBoost
+#### XGBoost
 
-### Objective Function:
+##### Objective Function:
 $$ L(\phi) = \sum_{i=1}^{n} l(\hat{y}_i, y_i) + \sum_{k=1}^{K} \Omega(f_k) $$
 
 where \( l(\hat{y}_i, y_i) \) is the loss function, and \( \Omega(f_k) \) is the regularization term.
 
-### Regularization Term:
+##### Regularization Term:
 $$ \Omega(f_k) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2 $$
 
 where \( T \) is the number of leaves, \( w_j \) are the leaf weights, \( \gamma \) controls the number of leaves, and \( \lambda \) controls \( L_2 \) regularization.
 
-# Neural Networks
+#### Neural Networks
 
-### Activation Function:
+##### Activation Function:
 $$ a^{(l)} = f(W^{(l)} \cdot a^{(l-1)} + b^{(l)}) $$
 
 where \( a^{(l)} \) is the activation of layer \( l \), \( W^{(l)} \) is the weight matrix, \( b^{(l)} \) is the bias vector, and \( f \) is the activation function.
 
-### Cost Function:
+##### Cost Function:
 $$ J(\theta) = \frac{1}{m} \sum_{i=1}^{m} \text{Loss}(\hat{y}^{(i)}, y^{(i)}) $$
 
 where \( J(\theta) \) is the cost function, \( m \) is the number of training examples, \( \hat{y}^{(i)} \) is the predicted output, and \( y^{(i)} \) is the actual output.
 
-### Backpropagation:
+##### Backpropagation:
 $$ \frac{\partial J}{\partial W^{(l)}} = \delta^{(l)} \cdot a^{(l-1)} $$
 
 where \( \delta^{(l)} \) is the error term for layer \( l \), and \( a^{(l-1)} \) is the activation of the previous layer.
