@@ -41,41 +41,37 @@ Processed Data: The cleaned and processed data from url.csv, now consisting of 1
 #### 2. Model Training and Evaluation
 We trained three popular classification models—Decision Trees, XGBoost, and Neural Networks—on the same processed dataset, alongside our pre-trained Model X (Random Forest). Each model was assessed based on accuracy, precision, and recall to ensure a consistent and comparative analysis.
 
-For Decision Trees, we used Gini Impurity and Information Gain to determine the best splits:
+### 1. Decision Tree
+
+A Decision Tree recursively splits the dataset into subsets based on feature values to minimize a loss function.
 
 - **Gini Impurity:**
 
-  \[
-  G = 1 - \sum_{i=1}^{n} p_i^2
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?G%20%3D%201%20-%20%5Csum_%7Bi%3D1%7D%5En%20p_i%5E2" alt="Gini Impurity">
+  </p>
 
   where \( p_i \) is the probability of class \( i \) at a given node.
 
 - **Information Gain:**
 
-  \[
-  IG = H(S) - \sum_{i=1}^{k} \frac{|S_i|}{|S|} H(S_i)
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?IG%20%3D%20H(S)%20-%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cfrac%7B%7CS_i%7C%7D%7B%7CS%7C%7D%20H(S_i)" alt="Information Gain">
+  </p>
 
-  where \( H(S) \) is the entropy of the original dataset \( S \), and \( H(S_i) \) is the entropy of each subset \( S_i \) created by a split.
+  where \( H(S) \) is the entropy of the original dataset \( S \), and \( H(S_i) \) is the entropy of each subset created by a split.
 
-For Model X (Random Forest), which is an ensemble of Decision Trees, we evaluated the predictions as follows:
+### 2. Random Forest
+
+A Random Forest is an ensemble of Decision Trees, where each tree is trained on a bootstrap sample of the dataset, using a random subset of features to determine the best splits.
 
 - **Prediction of Random Forest:**
 
-  \[
-  \hat{y} = \frac{1}{N} \sum_{i=1}^{N} T_i(x)
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?%5Chat%7By%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5EN%20T_i(x)" alt="Random Forest Prediction">
+  </p>
 
   where \( T_i(x) \) is the prediction of the \( i \)-th tree for input \( x \), and \( N \) is the total number of trees in the forest.
-
-- **Bootstrap Sampling:**
-
-  \[
-  S^{\text{boot}} = \{ (x_1, y_1), (x_2, y_2), \dots, (x_m, y_m) \}
-  \]
-
-  where \( m \) is the number of samples, and \( S^{\text{boot}} \) is the bootstrap sample.
 
 ### 3. XGBoost (Extreme Gradient Boosting)
 
@@ -83,64 +79,55 @@ XGBoost builds trees sequentially, where each tree tries to correct the errors o
 
 - **Objective Function:**
 
-  \[
-  \mathcal{L}(\phi) = \sum_{i=1}^{n} l(\hat{y}_i, y_i) + \sum_{k=1}^{K} \Omega(f_k)
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?%5Cmathcal%7BL%7D(%5Cphi)%20%3D%20%5Csum_%7Bi%3D1%7D%5En%20l(%5Chat%7By%7D_i%2C%20y_i)%20%2B%20%5Csum_%7Bk%3D1%7D%5EK%20%5COmega(f_k)" alt="XGBoost Objective Function">
+  </p>
 
   where \( l(\hat{y}_i, y_i) \) is the loss function, and \( \Omega(f_k) \) is the regularization term.
 
 - **Regularization Term:**
 
-  \[
-  \Omega(f_k) = \gamma T + \frac{1}{2} \lambda \sum_{j=1}^{T} w_j^2
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?%5COmega(f_k)%20%3D%20%5Cgamma%20T%20%2B%20%5Cfrac%7B1%7D%7B2%7D%20%5Clambda%20%5Csum_%7Bj%3D1%7D%5ET%20w_j%5E2" alt="XGBoost Regularization Term">
+  </p>
 
-  where \( T \) is the number of leaves in the tree, \( w_j \) are the leaf weights, \( \gamma \) controls the number of leaves, and \( \lambda \) controls the \( L2 \) regularization.
+  where \( T \) is the number of leaves, \( w_j \) are the leaf weights, \( \gamma \) controls the number of leaves, and \( \lambda \) controls \( L2 \) regularization.
 
 - **Prediction:**
 
-  \[
-  \hat{y}_i^{(t)} = \hat{y}_i^{(t-1)} + f_t(x_i)
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?%5Chat%7By%7D_i%5E%7B(t)%7D%20%3D%20%5Chat%7By%7D_i%5E%7B(t-1)%7D%20%2B%20f_t(x_i)" alt="XGBoost Prediction">
+  </p>
 
   where \( \hat{y}_i^{(t)} \) is the prediction at iteration \( t \), and \( f_t(x_i) \) is the prediction of the \( t \)-th tree.
 
 ### 4. Multilayer Perceptron (Neural Network)
 
-A Multilayer Perceptron (MLP) is a type of neural network that consists of multiple layers of neurons, including an input layer, one or more hidden layers, and an output layer.
+A Multilayer Perceptron (MLP) is a type of neural network with multiple layers of neurons, including an input layer, one or more hidden layers, and an output layer.
 
 - **Activation Function:**
 
-  \[
-  a^{(l)} = f(W^{(l)} \cdot a^{(l-1)} + b^{(l)})
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?a%5E%7B(l)%7D%20%3D%20f(W%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D%20%2B%20b%5E%7B(l)%7D)" alt="Neural Network Activation Function">
+  </p>
 
-  where \( a^{(l)} \) is the activation of layer \( l \), \( W^{(l)} \) is the weight matrix, \( b^{(l)} \) is the bias vector, and \( f \) is the activation function (e.g., ReLU, Sigmoid).
-
-- **Forward Propagation:**
-
-  \[
-  \hat{y} = f(W^{(L)} \cdot a^{(L-1)} + b^{(L)})
-  \]
-
-  where \( \hat{y} \) is the predicted output, and \( L \) is the number of layers.
+  where \( a^{(l)} \) is the activation of layer \( l \), \( W^{(l)} \) is the weight matrix, \( b^{(l)} \) is the bias vector, and \( f \) is the activation function.
 
 - **Cost Function:**
 
-  \[
-  J(\theta) = \frac{1}{m} \sum_{i=1}^{m} \text{Loss}(\hat{y}^{(i)}, y^{(i)})
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?J(%5Ctheta)%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum_%7Bi%3D1%7D%5Em%20%5CLoss(%5Chat%7By%7D%5E%7B(i)%7D%2C%20y%5E%7B(i)%7D)" alt="Neural Network Cost Function">
+  </p>
 
   where \( J(\theta) \) is the cost function, \( m \) is the number of training examples, \( \hat{y}^{(i)} \) is the predicted output, and \( y^{(i)} \) is the actual output.
 
 - **Backpropagation:**
 
-  \[
-  \frac{\partial J}{\partial W^{(l)}} = \delta^{(l)} \cdot a^{(l-1)}
-  \]
+  <p align="center">
+    <img src="https://latex.codecogs.com/svg.latex?%5Cfrac%7B%5Cpartial%20J%7D%7B%5Cpartial%20W%5E%7B(l)%7D%20%3D%20%5Cdelta%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D" alt="Neural Network Backpropagation">
+  </p>
 
   where \( \delta^{(l)} \) is the error term for layer \( l \), and \( a^{(l-1)} \) is the activation of the previous layer.
-
 
 #### 3. Performance Comparison and Insights
 XGBoost and Neural Networks significantly outperformed Model X and Decision Trees, with XGBoost excelling in accuracy and robustness due to its regularization and efficiency. Neural Networks demonstrated superior performance by effectively learning complex patterns and modeling non-linear relationships. This comparative analysis highlighted XGBoost and Neural Networks as the most suitable models for detecting phishing URLs.
