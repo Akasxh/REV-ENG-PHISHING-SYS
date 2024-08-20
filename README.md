@@ -47,17 +47,13 @@ A Decision Tree recursively splits the dataset into subsets based on feature val
 
 - **Gini Impurity:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?G%20%3D%201%20-%20%5Csum_%7Bi%3D1%7D%5En%20p_i%5E2" alt="Gini Impurity">
-  </p>
+  ![Gini Impurity](https://latex.codecogs.com/svg.latex?G%20%3D%201%20-%20%5Csum_%7Bi%3D1%7D%5En%20p_i%5E2)
 
   where \( p_i \) is the probability of class \( i \) at a given node.
 
 - **Information Gain:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?IG%20%3D%20H(S)%20-%20%5Csum_%7Bi%3D1%7D%5Ek%20%5Cfrac%7B%7CS_i%7C%7D%7B%7CS%7C%7D%20H(S_i)" alt="Information Gain">
-  </p>
+  ![Information Gain](https://latex.codecogs.com/svg.latex?IG%20%3D%20H(S)%20-%20%5Csum_%7Bi%3D1%7D%5Fk%20%5Cfrac%7B%7CS_i%7C%7D%7B%7CS%7C%7D%20H(S_i))
 
   where \( H(S) \) is the entropy of the original dataset \( S \), and \( H(S_i) \) is the entropy of each subset created by a split.
 
@@ -67,9 +63,7 @@ A Random Forest is an ensemble of Decision Trees, where each tree is trained on 
 
 - **Prediction of Random Forest:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?%5Chat%7By%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5EN%20T_i(x)" alt="Random Forest Prediction">
-  </p>
+  ![Random Forest Prediction](https://latex.codecogs.com/svg.latex?%5Chat%7By%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5EN%20T_i(x))
 
   where \( T_i(x) \) is the prediction of the \( i \)-th tree for input \( x \), and \( N \) is the total number of trees in the forest.
 
@@ -79,25 +73,19 @@ XGBoost builds trees sequentially, where each tree tries to correct the errors o
 
 - **Objective Function:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?%5Cmathcal%7BL%7D(%5Cphi)%20%3D%20%5Csum_%7Bi%3D1%7D%5En%20l(%5Chat%7By%7D_i%2C%20y_i)%20%2B%20%5Csum_%7Bk%3D1%7D%5EK%20%5COmega(f_k)" alt="XGBoost Objective Function">
-  </p>
+  ![XGBoost Objective Function](https://latex.codecogs.com/svg.latex?%5Cmathcal%7BL%7D(%5Cphi)%20%3D%20%5Csum_%7Bi%3D1%7D%5En%20l(%5Chat%7By%7D_i%2C%20y_i)%20%2B%20%5Csum_%7Bk%3D1%7D%5EK%20%5COmega(f_k))
 
   where \( l(\hat{y}_i, y_i) \) is the loss function, and \( \Omega(f_k) \) is the regularization term.
 
 - **Regularization Term:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?%5COmega(f_k)%20%3D%20%5Cgamma%20T%20%2B%20%5Cfrac%7B1%7D%7B2%7D%20%5Clambda%20%5Csum_%7Bj%3D1%7D%5ET%20w_j%5E2" alt="XGBoost Regularization Term">
-  </p>
+  ![XGBoost Regularization Term](https://latex.codecogs.com/svg.latex?%5COmega(f_k)%20%3D%20%5Cgamma%20T%20%2B%20%5Cfrac%7B1%7D%7B2%7D%20%5Clambda%20%5Csum_%7Bj%3D1%7D%5ET%20w_j%5E2)
 
   where \( T \) is the number of leaves, \( w_j \) are the leaf weights, \( \gamma \) controls the number of leaves, and \( \lambda \) controls \( L2 \) regularization.
 
 - **Prediction:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?%5Chat%7By%7D_i%5E%7B(t)%7D%20%3D%20%5Chat%7By%7D_i%5E%7B(t-1)%7D%20%2B%20f_t(x_i)" alt="XGBoost Prediction">
-  </p>
+  ![XGBoost Prediction](https://latex.codecogs.com/svg.latex?%5Chat%7By%7D_i%5E%7B(t)%7D%20%3D%20%5Chat%7By%7D_i%5E%7B(t-1)%7D%20%2B%20f_t(x_i))
 
   where \( \hat{y}_i^{(t)} \) is the prediction at iteration \( t \), and \( f_t(x_i) \) is the prediction of the \( t \)-th tree.
 
@@ -107,25 +95,19 @@ A Multilayer Perceptron (MLP) is a type of neural network with multiple layers o
 
 - **Activation Function:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?a%5E%7B(l)%7D%20%3D%20f(W%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D%20%2B%20b%5E%7B(l)%7D)" alt="Neural Network Activation Function">
-  </p>
+  ![Neural Network Activation Function](https://latex.codecogs.com/svg.latex?a%5E%7B(l)%7D%20%3D%20f(W%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D%20%2B%20b%5E%7B(l)%7D)
 
   where \( a^{(l)} \) is the activation of layer \( l \), \( W^{(l)} \) is the weight matrix, \( b^{(l)} \) is the bias vector, and \( f \) is the activation function.
 
 - **Cost Function:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?J(%5Ctheta)%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum_%7Bi%3D1%7D%5Em%20%5CLoss(%5Chat%7By%7D%5E%7B(i)%7D%2C%20y%5E%7B(i)%7D)" alt="Neural Network Cost Function">
-  </p>
+  ![Neural Network Cost Function](https://latex.codecogs.com/svg.latex?J(%5Ctheta)%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%20%5Csum_%7Bi%3D1%7D%5Em%20%5CLoss(%5Chat%7By%7D%5E%7B(i)%7D%2C%20y%5E%7B(i)%7D)
 
   where \( J(\theta) \) is the cost function, \( m \) is the number of training examples, \( \hat{y}^{(i)} \) is the predicted output, and \( y^{(i)} \) is the actual output.
 
 - **Backpropagation:**
 
-  <p align="center">
-    <img src="https://latex.codecogs.com/svg.latex?%5Cfrac%7B%5Cpartial%20J%7D%7B%5Cpartial%20W%5E%7B(l)%7D%20%3D%20%5Cdelta%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D" alt="Neural Network Backpropagation">
-  </p>
+  ![Neural Network Backpropagation](https://latex.codecogs.com/svg.latex?%5Cfrac%7B%5Cpartial%20J%7D%7B%5Cpartial%20W%5E%7B(l)%7D%20%3D%20%5Cdelta%5E%7B(l)%7D%20%5Ccdot%20a%5E%7B(l-1)%7D)
 
   where \( \delta^{(l)} \) is the error term for layer \( l \), and \( a^{(l-1)} \) is the activation of the previous layer.
 
