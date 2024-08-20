@@ -1,14 +1,11 @@
 # REV-ENG-PHISHING-SYS
 
-### 1.Analysis of Blackbox AI 
-### 2.Benchmarking and innovation upon it
-
 <p align="center">
   <img src="image/Blackbox.png" alt="Blackbox Model">
 </p>
 
 
-### Reverse Engineering a Black-Box Model: Identifying a Random Forest Model
+### 1.Reverse Engineering a Black-Box Model: Identifying a Random Forest Model
 The process of reverse engineering a black-box model to determine its underlying structure involves a systematic approach to understanding the model's behavior, architecture, and decision-making processes. In this analysis, we start with the assumption that the model is entirely opaque, and we aim to infer that it is a Random Forest model through careful examination of its outputs, structure, and operational characteristics.
 
 #### 1. Model Loading and Initial Inspection
@@ -30,7 +27,7 @@ To gain a more granular understanding of how the model makes decisions, we visua
 #### 5. Model Evaluation and Decision Path Analysis
 To further validate our identification of the model, we evaluated its performance on a test dataset. The high accuracy and robustness across various subsets of data indicated that the model was leveraging an ensemble approach, which is characteristic of Random Forests. Additionally, by analyzing the decision paths for specific instances, we observed that the final predictions were determined by aggregating the outputs of multiple trees, a definitive trait of Random Forest models.
 
-### Benchmarking Classification Models for Phishing Detection
+### 2.Benchmarking Classification Models for Phishing Detection
 In the second phase of our analysis, we aimed to benchmark various classification models to identify the most effective approach for detecting phishing URLs. The process involved comparing the performance of different models, including our pre-trained model, Model X (Random Forest), Decision Trees, XGBoost, and Neural Networks, using a well-structured and feature-rich dataset.
 
 ![](image/Analysis_on_other_models.png)
