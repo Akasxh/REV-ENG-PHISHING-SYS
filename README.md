@@ -1,7 +1,9 @@
 # REV-ENG-PHISHING-SYS
 
-## Analysis of Blackbox AI 
-## Benchmarking and innovation upon it
+## 1.Analysis of Blackbox AI 
+## 2.Benchmarking and innovation upon it
+
+![](image/Blackbox.png)
 
 
 ### Reverse Engineering a Black-Box Model: Identifying a Random Forest Model
@@ -15,10 +17,12 @@ Upon identifying the presence of multiple decision trees within the model, we co
 
 #### 3. Feature Importance Analysis
 ![](image/feature_importance.png)
+
 One of the distinguishing features of a Random Forest model is its ability to provide feature importances, which quantify the contribution of each feature to the model's decision-making process. By extracting and analyzing the feature_importances_ attribute, we observed a non-trivial distribution of importance scores across the input features. This distribution is consistent with how Random Forest models operate, as they aggregate the importance scores derived from individual trees. The presence of this attribute further reinforced our hypothesis that the model in question was indeed a Random Forest.
 
 #### 4. Tree Visualization
 ![](image/foreest_graph_visualised.png)
+
 To gain a more granular understanding of how the model makes decisions, we visualized individual decision trees within the ensemble. We began by loading the Random Forest model from the model.pickle.dat file and extracted one of the decision trees. Using the export_graphviz function from the sklearn.tree module, we converted the tree into a Dot format. This was then processed with pydotplus to generate a PNG image, which we displayed using matplotlib. This visualization allowed us to inspect the decision paths, node splits, and class predictions in detail. The diversity among the trees, while maintaining a consistent overall structure, aligned with the expected behavior of Random Forests, where each tree is trained on a different bootstrap sample and considers a random subset of features at each split.
 
 #### 5. Model Evaluation and Decision Path Analysis
@@ -26,6 +30,7 @@ To further validate our identification of the model, we evaluated its performanc
 
 ### Benchmarking Classification Models for Phishing Detection
 In the second phase of our analysis, we aimed to benchmark various classification models to identify the most effective approach for detecting phishing URLs. The process involved comparing the performance of different models, including our pre-trained model, Model X (Random Forest), Decision Trees, XGBoost, and Neural Networks, using a well-structured and feature-rich dataset.
+
 ![](image/Analysis_on_other_models.png)
 
 #### 1. Data Preprocessing and Feature Selection
@@ -45,4 +50,5 @@ Comparative Analysis: Through rigorous evaluation, it became clear that both XGB
 
 #### 4. Conclusion
 ![](image/Benchmark.png)
+
 In conclusion, our extensive benchmarking revealed that while Model X and Decision Trees were solid baseline models, XGBoost and Neural Networks offered significantly better performance for phishing detection. The careful preprocessing of the dataset, including the analysis of URL depth and length and the exclusion of non-numerical features, played a crucial role in maximizing the effectiveness of these models. This analysis underscores the importance of selecting the right model and features when developing robust phishing detection systems.
