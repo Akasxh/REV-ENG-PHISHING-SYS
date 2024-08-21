@@ -63,7 +63,9 @@ where \( T_i(x) \) is the prediction of the \( i \)-th tree for input \( x \), a
 #### 3.XGBoost
 
 ##### Objective Function:
-$$ L(\phi) = \sum_{i=1}^{n} l(\hat{y}_i, y_i) + \sum_{k=1}^{K} \Omega(f_k) $$
+$$
+L(\phi) = \sum_{i=1}^{n} l(\hat{y}_i, y_i) + \sum_{k=1}^{K} \Omega(f_k)
+$$
 
 where \( l(\hat{y}_i, y_i) \) is the loss function, and \( \Omega(f_k) \) is the regularization term.
 
